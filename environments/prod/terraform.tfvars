@@ -15,32 +15,32 @@ storage_account = {
   }
 }
 
-azure_container_registry = {
-  "acr" = {
-    acr_name            = "todoappacr001"
-    resource_group_name = "prod-rg-01"
-    location            = "centralus"
-    sku                 = "Premium"
-    admin_enabled       = false
-  }
-}
+# azure_container_registry = {
+#   "acr" = {
+#     acr_name            = "todoappacr001"
+#     resource_group_name = "prod-rg-01"
+#     location            = "centralus"
+#     sku                 = "Premium"
+#     admin_enabled       = false
+#   }
+# }
 
-azure_kuberetes_cluster = {
-  "aks_cluster_01" = {
-    aks_name            = "aks-prod-todoapp"
-    resource_group_name = "prod-rg-01"
-    location            = "centralus"
-    dns_prefix          = "aks-prod-todoapp"
-    default_node_pool = {
-      name       = "default"
-      node_count = 1
-      vm_size    = "Standard_DS2_v2"
-    }
-    identity = {
-      type = "SystemAssigned"
-    }
-  }
-}
+# azure_kuberetes_cluster = {
+#   "aks_cluster_01" = {
+#     aks_name            = "aks-prod-todoapp"
+#     resource_group_name = "prod-rg-01"
+#     location            = "centralus"
+#     dns_prefix          = "aks-prod-todoapp"
+#     default_node_pool = {
+#       name       = "default"
+#       node_count = 1
+#       vm_size    = "Standard_DS2_v2"
+#     }
+#     identity = {
+#       type = "SystemAssigned"
+#     }
+#   }
+# }
 
 # sql_server = {
 #   "sql_server_01" = {

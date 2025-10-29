@@ -6,26 +6,26 @@ variable "storage_account" {
     resource_group_name      = string
     account_replication_type = string //"LRS"
     account_tier             = string //"Standard"
-    access_tier              = optional(string)
+    account_kind             = optional(string)
 
-    custom_domain = optional(object({
+    custom_domain = optional(map(object({
       name          = string
       use_subdomain = optional(string, false)
-    }))
+    })), {})
 
-    network_rules = optional(object({
+    network_rules = optional(map(object({
       default_action = string
       bypass         = optional(string)
       ip_rules       = optional(list(string))
-    }))
+    })), {})
 
-    identity = optional(object({
+    identity = optional(map(object({
       type         = string
       identity_ids = optional(list(string))
-    }))
+    })), {})
 
     tags = optional(map(string), {})
-    
+
   }))
 
 }

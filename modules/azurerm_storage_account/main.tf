@@ -11,16 +11,17 @@ resource "azurerm_storage_account" "child_stg" {
   #Optional arguements
   access_tier = try(each.value.access_tier, null)
 
-  
+
   dynamic "custom_domain" {
     for_each = each.value.custom_domain
     content {
       name          = custom_domain.value.name
-      use_subdomain = custom_domain.value.name
+      use_subdomain = custom_domain.value.use_subdomain
     }
   }
 
   dynamic "network_rules" {
+    # for_each = each.value.network_rules != null ? [each.value.network_rules] : []
     for_each = each.value.network_rules
     content {
       default_action = network_rules.value.default_action

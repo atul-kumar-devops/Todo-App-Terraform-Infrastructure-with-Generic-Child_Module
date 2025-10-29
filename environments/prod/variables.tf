@@ -16,38 +16,38 @@ variable "storage_account" {
   }))
 }
 
-variable "azure_container_registry" {
-  type = map(object(
-    {
-      acr_name            = string
-      resource_group_name = string
-      location            = string
-      sku                 = string //"Premium"
-      admin_enabled       = bool   //false
-      tags                = optional(map(string))
-    }
-  ))
-}
+# variable "azure_container_registry" {
+#   type = map(object(
+#     {
+#       acr_name            = string
+#       resource_group_name = string
+#       location            = string
+#       sku                 = string //"Premium"
+#       admin_enabled       = bool   //false
+#       tags                = optional(map(string))
+#     }
+#   ))
+# }
 
-variable "azure_kuberetes_cluster" {
-  type = map(object({
-    aks_name            = string
-    resource_group_name = string
-    location            = string
-    dns_prefix          = optional(string)
-    default_node_pool = object({
-      name       = string
-      node_count = number
-      vm_size    = string
-    })
-    identity = optional(object({
-      type = string
-      }), {
-      type = "SystemAssigned"
-    })
-    tags = optional(map(string))
-  }))
-}
+# variable "azure_kuberetes_cluster" {
+#   type = map(object({
+#     aks_name            = string
+#     resource_group_name = string
+#     location            = string
+#     dns_prefix          = optional(string)
+#     default_node_pool = object({
+#       name       = string
+#       node_count = number
+#       vm_size    = string
+#     })
+#     identity = optional(object({
+#       type = string
+#       }), {
+#       type = "SystemAssigned"
+#     })
+#     tags = optional(map(string))
+#   }))
+# }
 
 # variable "sql_server" {
 #   type = map(object({

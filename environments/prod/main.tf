@@ -1,10 +1,10 @@
-locals {
-  common_tags = {
-    "ManagedBy"   = "Terraform"
-    "Owner"       = "TodoAppTeam"
-    "Environment" = "prod"
-  }
-}
+# locals {
+#   common_tags = {
+#     "ManagedBy"   = "Terraform"
+#     "Owner"       = "TodoAppTeam"
+#     "Environment" = "prod"
+#   }
+# }
 
 module "rg" {
   source         = "../../modules/azurerm_resource_group"
@@ -17,18 +17,18 @@ module "storage_account" {
   storage_account = var.storage_account
 }
 
-module "azure_container_registry" {
-  depends_on = [module.rg]
-  source     = "../../modules/azurerm_container_registry"
-  acr        = var.azure_container_registry
+# module "azure_container_registry" {
+#   depends_on = [module.rg]
+#   source     = "../../modules/azurerm_container_registry"
+#   acr        = var.azure_container_registry
 
-}
+# }
 
-module "aks_cluster" {
-  depends_on  = [module.rg]
-  source      = "../../modules/azurerm_kubernetes_cluster"
-  aks_cluster = var.azure_kuberetes_cluster
-}
+# module "aks_cluster" {
+#   depends_on  = [module.rg]
+#   source      = "../../modules/azurerm_kubernetes_cluster"
+#   aks_cluster = var.azure_kuberetes_cluster
+# }
 
 # module "sql_server" {
 #   depends_on = [ module.rg ]
