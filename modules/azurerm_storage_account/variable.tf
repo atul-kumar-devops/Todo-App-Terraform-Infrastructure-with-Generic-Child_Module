@@ -6,7 +6,8 @@ variable "storage_account" {
     resource_group_name      = string
     account_replication_type = string //"LRS"
     account_tier             = string //"Standard"
-    account_kind             = optional(string)
+    
+    account_kind             = optional(string, "StorageV2")
 
     custom_domain = optional(map(object({
       name          = string

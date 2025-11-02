@@ -17,11 +17,16 @@ module "storage_account" {
   storage_account = var.storage_account
 }
 
+module "virtual_network" {
+  depends_on      = [module.rg]
+  source          = "../../modules/azurerm_virtual_network"
+  virtual_network = var.virtual_network
+}
+
 # module "azure_container_registry" {
 #   depends_on = [module.rg]
 #   source     = "../../modules/azurerm_container_registry"
 #   acr        = var.azure_container_registry
-
 # }
 
 # module "aks_cluster" {

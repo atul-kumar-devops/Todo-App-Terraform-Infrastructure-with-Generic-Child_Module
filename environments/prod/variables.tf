@@ -2,6 +2,7 @@ variable "resource_group" {
   type = map(object({
     resource_group_name = string
     location            = string
+    tags                = optional(map(string))
   }))
 }
 
@@ -13,6 +14,16 @@ variable "storage_account" {
     account_replication_type = string //"LRS"
     account_tier             = string //"Standard"
     tags                     = optional(map(string))
+  }))
+}
+
+variable "virtual_network" {
+  type = map(object({
+    virtual_network_name = string
+    location             = string
+    resource_group_name  = string
+    address_space        = list(string)
+    dns_servers          = optional(list(string))
   }))
 }
 
