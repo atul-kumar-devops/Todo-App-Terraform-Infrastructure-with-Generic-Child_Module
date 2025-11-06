@@ -8,7 +8,7 @@ terraform {
 
   backend "azurerm" {
     resource_group_name  = "State-Management"
-    storage_account_name = "statemanagement434"
+    storage_account_name = "statemanagement244"
     container_name       = "statefile"
     key                  = "prod.terraform.tfstate"
   }
@@ -16,5 +16,5 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "cba3453a-ff1f-4f51-b6f6-5a1149843776"
+  subscription_id = "1d3588c8-af2c-442c-bdc3-7fc3b65594b9"
 }

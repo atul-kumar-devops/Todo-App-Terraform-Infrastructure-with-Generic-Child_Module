@@ -18,9 +18,15 @@ module "storage_account" {
 }
 
 module "virtual_network" {
-  depends_on      = [module.rg]
-  source          = "../../modules/azurerm_virtual_network"
-  virtual_network = var.virtual_network
+  depends_on       = [module.rg]
+  source           = "../../modules/azurerm_virtual_network"
+  virtual_networks = var.virtual_networks
+}
+
+module "subnet" {
+  depends_on = [module.virtual_network]
+  source     = "../../modules/azurerm_subnet"
+  subnets    = var.subnets
 }
 
 # module "azure_container_registry" {

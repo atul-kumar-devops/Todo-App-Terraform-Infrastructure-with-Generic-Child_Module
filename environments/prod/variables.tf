@@ -17,7 +17,7 @@ variable "storage_account" {
   }))
 }
 
-variable "virtual_network" {
+variable "virtual_networks" {
   type = map(object({
     virtual_network_name = string
     location             = string
@@ -26,6 +26,16 @@ variable "virtual_network" {
     dns_servers          = optional(list(string))
   }))
 }
+
+variable "subnets" {
+  type = map(object({
+    subnet_name          = string
+    resource_group_name  = string
+    virtual_network_name = string
+    address_prefixes     = list(string)
+  }))
+}
+
 
 # variable "azure_container_registry" {
 #   type = map(object(

@@ -23,12 +23,21 @@ storage_account = {
   }
 }
 
-virtual_network = {
+virtual_networks = {
   "vnet1" = {
     virtual_network_name = "prod-vnet-01"
     resource_group_name  = "prod-rg-01"
     location             = "centralus"
     address_space        = ["10.0.0.0/16"]
-    dns_servers          = ["10.10.0.4", "10.10.0.5"]
+
+  }
+}
+
+subnets = {
+  "subnet1" = {
+    subnet_name          = "prod-subnet-01"
+    resource_group_name  = "prod-rg-01"
+    virtual_network_name = "prod-vnet-01"
+    address_prefixes     = ["10.0.0.0/24"]
   }
 }
