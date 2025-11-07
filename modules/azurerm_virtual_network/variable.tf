@@ -1,4 +1,4 @@
-variable "virtual_network" {
+variable "virtual_networks" {
   type = map(object({
     virtual_network_name = string
     location             = string
@@ -10,5 +10,6 @@ variable "virtual_network" {
       enable = string
     })), {})
     encryption_defined = optional(map(string))
+    tags               = optional(map(string), {})
   }))
 }

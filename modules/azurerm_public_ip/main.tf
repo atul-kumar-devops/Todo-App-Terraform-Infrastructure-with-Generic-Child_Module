@@ -1,8 +1,10 @@
 resource "azurerm_public_ip" "child_pip" {
-  name                = var.pip_name
-  resource_group_name = var.resource_group_name
-  location            = var.location
-  allocation_method   = "Static"
-  sku                 = var.sku
-  tags                = var.tags
+  for_each = var.public_ips
+
+  name                = each.value.pip_name
+  resource_group_name = each.value.resource_group_name
+  location            = each.value.location
+  allocation_method   = each.value.allocation_method
+  sku                 = each.value.sku
+  tags                = each.value.tags
 }

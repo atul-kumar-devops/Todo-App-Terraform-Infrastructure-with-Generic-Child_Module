@@ -24,6 +24,12 @@ variable "virtual_networks" {
     resource_group_name  = string
     address_space        = list(string)
     dns_servers          = optional(list(string))
+    ddos_protection_plan = optional(map(object({
+      id     = string
+      enable = string
+    })), {})
+    encryption_defined = optional(map(string))
+    tags               = optional(map(string), {})
   }))
 }
 
@@ -34,7 +40,79 @@ variable "subnets" {
     virtual_network_name = string
     address_prefixes     = list(string)
   }))
+
+
 }
+
+variable "public_ips" {
+  type = map(object({
+    pip_name            = string
+    resource_group_name = string
+    location            = string
+    allocation_method   = string
+    sku                 = string
+    tags                = optional(map(string))
+  }))
+}
+
+variable "network_security_groups" {
+  type = map(object({
+    nsg_name            = string
+    location            = string
+    resource_group_name = string
+    nsg_rules = list(object(
+      {
+        security_rule_name         = string
+        priority                   = number
+        direction                  = string
+        access                     = string
+        protocol                   = string
+        source_port_range          = string
+        destination_port_range     = string
+        source_address_prefix      = string
+        destination_address_prefix = string
+      }
+    ))
+    tags = optional(map(string))
+  }))
+}
+
+variable "key_vaults" {
+  type = map(object({
+    key_vault_name      = string
+    resource_group_name = string
+    location            = string
+    tags                = optional(map(string), {})
+  }))
+}
+
+variable "kv_secrets" {
+  type = map(object({
+    kv_secret_name      = string
+    kv_secret_value     = string
+    kv_name             = string
+    resource_group_name = string
+  }))
+}
+
+variable "linux_vms" {
+  type = map(object({
+    nic_name               = string
+    linux_vm_name          = string
+    resource_group_name    = string
+    virtual_network_name   = string
+    location               = string
+    size                   = string
+    source_image_reference = map(string)
+    subnet_name            = string
+    pip_name               = string
+    nsg_name               = string
+    key_vault_name         = string
+    tags                   = optional(map(string), {})
+  }))
+}
+
+
 
 
 # variable "azure_container_registry" {

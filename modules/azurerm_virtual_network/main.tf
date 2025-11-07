@@ -1,5 +1,5 @@
 resource "azurerm_virtual_network" "child_virtual_network" {
-  for_each = var.virtual_network
+  for_each = var.virtual_networks
 
   name                = each.value.virtual_network_name
   location            = each.value.location
@@ -18,10 +18,12 @@ resource "azurerm_virtual_network" "child_virtual_network" {
   }
 
   dynamic "encryption" {
-    for_each = each.value.encryption_defined!=null ? each.value.encryption_defined : {}
+    for_each = each.value.encryption_defined != null ? each.value.encryption_defined : {}
     content {
       enforcement = encryption.value.encryption_defined
     }
   }
+
+  tags = each.value.tags
 
 }

@@ -29,6 +29,36 @@ module "subnet" {
   subnets    = var.subnets
 }
 
+module "public_ip" {
+  depends_on = [module.rg]
+  source     = "../../modules/azurerm_public_ip"
+  public_ips = var.public_ips
+}
+
+module "nsg" {
+  depends_on              = [module.rg]
+  source                  = "../../modules/azurerm_network_security_group"
+  network_security_groups = var.network_security_groups
+}
+
+module "key_vault" {
+  depends_on = [module.rg]
+  source     = "../../modules/azure_key_vault"
+  key_vaults = var.key_vaults
+}
+
+module "key_vault_secret" {
+  depends_on = [module.key_vault]
+  source     = "../../modules/azurerm_key_vault_secret"
+  kv_secrets = var.kv_secrets
+}
+
+module "linux_vm" {
+  depends_on = [module.subnet, module.public_ip, module.key_vault]
+  source     = "../../modules/azurerm_linux_virtual_machine"
+  linux_vms  = var.linux_vms
+}
+
 # module "azure_container_registry" {
 #   depends_on = [module.rg]
 #   source     = "../../modules/azurerm_container_registry"

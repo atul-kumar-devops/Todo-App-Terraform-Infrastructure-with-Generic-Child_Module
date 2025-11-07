@@ -9,5 +9,4 @@ resource "azurerm_mssql_database" "child_sql_database" {
   sku_name     = each.value.sku_name
   enclave_type = each.value.enclave_type
   tags         = each.value.tags
-  # tags = var.tags
 }
