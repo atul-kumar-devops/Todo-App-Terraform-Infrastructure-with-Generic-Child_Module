@@ -54,7 +54,7 @@ module "key_vault_secret" {
 }
 
 module "linux_vm" {
-  depends_on = [module.subnet, module.public_ip, module.key_vault]
+  depends_on = [module.subnet, module.public_ip, module.nsg, module.key_vault]
   source     = "../../modules/azurerm_linux_virtual_machine"
   linux_vms  = var.linux_vms
 }
