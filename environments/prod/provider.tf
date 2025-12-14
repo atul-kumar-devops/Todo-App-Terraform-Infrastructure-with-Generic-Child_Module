@@ -1,4 +1,8 @@
 terraform {
+  # required_version = ">=1.3.0"  //When you run the Command tflint --chdir
+                                  //Then it will give you the 1 issue found related to terraform required version
+                                  //UnComment this to resolve the issue.
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
